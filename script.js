@@ -69,6 +69,14 @@ function isPalindrome(str)
     return true;
 }
 
+function isLeap(y)
+{
+    if((y%4==0 && y%100!=0) || (y%400==0))
+       return true;
+    else 
+       return false;
+}
+
 function findNearestPalindromeDate(year , month , day)
 {
     var d1 = Number(day) , m1 = Number(month) , y1 = Number(year);
@@ -82,8 +90,15 @@ function findNearestPalindromeDate(year , month , day)
 
         if(d1 > Number(mon[m1-1]))
         {
-            d1 = 1;
-            m1 += 1;
+            if(m1==2 && isLeap(y1))
+            {
+                d1++;
+            }
+            else 
+            {
+                d1 = 1;
+                m1 += 1;
+            }
         }
 
         if(m1 > 12)
@@ -121,15 +136,18 @@ function findNearestPalindromeDate(year , month , day)
 
         if(d2<=0)
         {
-            m2-=1;
-
+            m2-=1
+            
             if(m2<=0)
             {
                 y2-=1;
                 m2 = 12;
             }
 
-            d2 = mon[m2-1];
+            if(m2==2 && isLeap(y2))
+               d2 = 29;
+            else
+               d2 = mon[m2-1];
         }
 
         var tempd2 = d2.toString();
