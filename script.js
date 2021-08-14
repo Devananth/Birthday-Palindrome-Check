@@ -8,8 +8,6 @@ var error = document.querySelector('.error');
 
 const mon = [ 31 , 28 , 31 , 30 , 31 , 30 , 31 , 31 , 30 , 31 , 30 , 31];
 
-let nearestDays = 0;
-
 var nearDay , nearMon , nearYear ;
 
 btn.addEventListener('click' , () => {
@@ -40,7 +38,7 @@ btn.addEventListener('click' , () => {
     }
     else {
 
-        findNearestPalindromeDate(year , month , day);
+        var nearestDays = findNearestPalindromeDate(year , month , day);
         opt.innerHTML = `<p>Aww  ☹ ! Sorry Your Birthday is not a Palindrome.</p>
                         <p>The nearest date that is palindrome is ` +
                         nearDay + "-" + nearMon + "-" + nearYear +` 
@@ -82,6 +80,8 @@ function findNearestPalindromeDate(year , month , day)
     var d1 = Number(day) , m1 = Number(month) , y1 = Number(year);
 
     var d2 = d1 , m2 = m1 , y2 = y1 ;
+
+    let nearestDays = 0;
 
     while(1)
     {
